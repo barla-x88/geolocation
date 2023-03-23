@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="location"></div>
+    <button>Get Position</button>
+    <script>
+      function getLocation() {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+            const text = `<p>Postion: Lat -${position.coords.latitude}, Long-${position.coords.longitude}</p>`;
+            document
+              .querySelector(".location")
+              .insertAdjacentHTML("afterbegin", text);
+          },
+          () => console.log("error")
+        );
+      }
+      document
+        .getElementsByTagName("button")[0]
+        .addEventListener("click", getLocation);
+    </script>
+  </body>
+</html>
